@@ -7,14 +7,14 @@ class New extends React.Component {
             <h1>Captain's Log New page</h1>
             {/* NOTE: action will be the route, method will be the HTTP verb */}
             <form action="/logs" method="POST">
-                <label for="title">Title: </label>
+                <label htmlFor="title">Title: </label>
                <input type="text" name="title" /><br/>
 
-               <label for="entry">Entry: </label>
+               <label htmlFor="entry">Entry: </label>
               <input type="textarea" name="entry" /><br/>
 
-              <label for="shipIsBroken"> Is ship broken? </label>
-              <input type="checkbox" name="shipIsBroken" /><br/>
+              <label htmlFor="shipIsBroken"> Is ship broken? </label>
+              <input type="checkbox" name="shipIsBroken" value="true"/><br/>
               <input type="submit" name="submit" value="Submit"/>
             </form>
         </div>);
