@@ -3,7 +3,7 @@ const express = require('express');
 // require body parser
 const bodyParser = require('body-parser');
 
-const logs = require('./models/logs');
+const Log = require('./models/logs');
 
 // set express()to a variable
 const app = express();
@@ -50,11 +50,9 @@ const jsonParser = bodyParser.json()
 
 // Index : Show all the things!
 app.get('/logs', (req, res) => {
-    logs.find({}, (error, allLogs) => {
-        logs: allLogs
-        res.render('views/Index');
+    Log.find({}, (error, allLog) => {
+        res.render('Index', {logs: allLog} ); 
     });
-    
 });
 
 /*
@@ -85,7 +83,7 @@ app.post('/logs', urlencodedParser, function (req, res) {
     }
     // Must be the last line of code to 
     // res.send(req.body);
-    logs.create(req.body, (error, createdLog)=>{
+    Log.create(req.body, (error, createdLog)=>{
         res.redirect('/Show');
     });
 
