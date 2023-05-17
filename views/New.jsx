@@ -14,7 +14,7 @@ class New extends React.Component {
               <input type="textarea" name="entry" /><br/>
 
               <label htmlFor="shipIsBroken"> Is ship broken? </label>
-              <input type="checkbox" name="shipIsBroken"/><br/>
+              <input type="checkbox" name="shipIsBroken" defaultChecked/><br/>
               <input type="submit" name="submit" value="Submit"/>
             </form>
         </div>);

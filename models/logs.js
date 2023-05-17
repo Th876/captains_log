@@ -19,7 +19,7 @@ const logsSchema = new Schema(
 
       shipIsBroken: {
         type: Boolean, 
-        default: true,
+        // default: true,
       }
     }
   );

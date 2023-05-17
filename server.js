@@ -55,15 +55,6 @@ app.get('/logs', (req, res) => {
     });
 });
 
-/*
-app.get('/fruits', (req, res)=>{
-    Fruit.find({}, (error, allFruits)=>{
-        res.render('fruits/Index', {
-            fruits: allFruits
-        });
-    });
-});
-*/ 
 // New : An empty form for a new thing
 app.get('/logs/new', (req, res) => {
         res.render('New');
@@ -83,15 +74,20 @@ app.post('/logs', urlencodedParser, function (req, res) {
     }
     // Must be the last line of code to 
     // res.send(req.body);
-    Log.create(req.body, (error, createdLog)=>{
-        res.redirect('/Show');
+    Log.create(req.body, (err, createdLog)=>{
+        res.redirect('/logs');
     });
-
 });
 
 
 // Edit : A prefilled form to update a specific thing
+
 // Show : Show me this one thing!
+app.get('/logs/:id', (req, res)=>{
+    Log.findById(req.params.id, (err, foundLog)=>{
+        res.render('Show', {log:foundLog})
+    });
+});
 
 // Server listening
 app.listen(port, () => {
