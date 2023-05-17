@@ -1,5 +1,9 @@
 // require express
 const express = require('express');
+
+//include the method-override package place this where you
+const methodOverride = require('method-override');
+
 // require body parser
 const bodyParser = require('body-parser');
 
@@ -30,6 +34,8 @@ app.use((req, res, next) => {
     next();
 });
 
+//use methodOverride. We'll be adding a query parameter to our delete form named _method
+app.use(methodOverride('_method'));
 
 // View engines
 app.set('view engine', 'jsx');
@@ -59,7 +65,14 @@ app.get('/logs', (req, res) => {
 app.get('/logs/new', (req, res) => {
         res.render('New');
 });
-// Delete : Get rid of this particular thing!
+// Delete : Get rid of this particular thing! 
+
+app.delete('/logs/:id', (req, res)=>{
+    Log.findByIdAndRemove(req.params.id, (err, data)=>{
+        res.redirect('/logs');//redirect back to logs index
+    });
+});
+
 // Update : Update this specific thing with this updated form
 
 // Create : Make a new thing with this filled out form
