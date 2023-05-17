@@ -75,6 +75,8 @@ app.delete('/logs/:id', (req, res)=>{
 
 // Update : Update this specific thing with this updated form
 
+
+
 // Create : Make a new thing with this filled out form
 // was app.post('/create',
 app.post('/logs', urlencodedParser, function (req, res) {
@@ -92,8 +94,20 @@ app.post('/logs', urlencodedParser, function (req, res) {
     });
 });
 
-
 // Edit : A prefilled form to update a specific thing
+app.get('/logs/:id/edit', (req, res)=>{
+    Log.findById(req.params.id, (err, foundLog)=>{ //find the log
+      if(!err){
+        res.render('Edit',
+    		{logs: foundLog //pass in the found log so we can prefill the form
+    		}
+    	);
+    } else {
+      res.send({ msg: err.message })
+    }
+    });
+});
+
 
 // Show : Show me this one thing!
 app.get('/logs/:id', (req, res)=>{

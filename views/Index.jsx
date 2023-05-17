@@ -14,7 +14,9 @@ class Index extends React.Component {
             logs.map((log)=>{
               return (
                 <li key={log._id}>
-                  The <a href={`/logs/${log._id}`}>{log.title}</a>
+                  <b>Title: </b><a href={`/logs/${log._id}`}>{log.title}</a>
+                  <br></br>
+                  <a href={`/logs/${log._id}/edit`}>Edit This Log</a>
                   <br></br>
                     <form action={`/logs/${log._id}?_method=DELETE`} method="POST">
                         <input type="submit" value="DELETE"/>
