@@ -5,8 +5,8 @@ const express = require('express');
 const methodOverride = require('method-override');
 
 // require body parser
-const bodyParser = require('body-parser');
-
+// const bodyParser = require('body-parser');
+// 
 const Log = require('./models/logs');
 
 // set express()to a variable
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
     console.log('I run for all routes');
     next();
 });
-
+app.use(express.urlencoded({extended:false}));
 //use methodOverride. We'll be adding a query parameter to our delete form named _method
 app.use(methodOverride('_method'));
 
@@ -46,12 +46,12 @@ app.engine('jsx', require('jsx-view-engine').createEngine
 // use and configure body-parser
 // manage url encoded data in all routes (app.use)
 // parse application/x-www-form-urlencoded
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+// const urlencodedParser = bodyParser.urlencoded({ extended: false })
 // app.use(bodyParser.urlencoded({ extended: false }))
 
 // manage json data in all routes (app.use)
 // parse application/json
-const jsonParser = bodyParser.json()
+// const jsonParser = bodyParser.json()
 // app.use(bodyParser.json())
 
 // Index : Show all the things!
@@ -74,12 +74,23 @@ app.delete('/logs/:id', (req, res)=>{
 });
 
 // Update : Update this specific thing with this updated form
-
+app.put('/logs/:id', (req, res)=>{
+    console.log(req.body);
+    if(req.body.shipIsBroken === 'on'){
+        req.body.shipIsBroken = true;
+    } else {
+        req.body.shipIsBroken = false;
+    }
+    Log.findByIdAndUpdate(req.params.id, req.body, (err, 
+updatedLog)=>{
+       console.log(updatedLog)
+        res.redirect(`/logs/${req.params.id}`);
+    });
+});
 
 
 // Create : Make a new thing with this filled out form
-// was app.post('/create',
-app.post('/logs', urlencodedParser, function (req, res) {
+app.post('/logs', function (req, res) {
     // res.send('received');
     console.log(req.body);
     if(req.body.shipIsBroken === 'on'){

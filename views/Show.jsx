@@ -2,16 +2,16 @@ const React = require('react');
 
 class Show extends React.Component {
     render(){
-        const log = this.props.log;
+        const logs = this.props.log;
         return (
             <div>
                 <h1>Captain's Log Show page</h1>
-                <b>Title: </b>{log.title} <hr></hr>
-                <b>Entry: </b> { log.entry}<br></br>
+                <b>Title: </b>{logs.title} <hr></hr>
+                <b>Entry: </b> { logs.entry}<br></br>
                 <br></br>
-                <b>Is the ship broken? </b>{log.shipIsBroken? 
-                'No, let\'s sail the 7 seas': 
-                'Yes, shout your mateys for help!'
+                <b>Is the ship broken? </b>
+                {logs.shipIsBroken? 
+                'Yes, shout your mateys for help!' : 'No, let\'s sail the 7 seas'
                 }
                 <br></br>
                 <br></br>

@@ -4,7 +4,7 @@ class New extends React.Component {
   render() {
     return (
         <div>
-            <h1>Captain's Log Edit page</h1>
+            <h1>Captain's Log New page</h1>
             {/* NOTE: action will be the route, method will be the HTTP verb */}
             <form action="/logs" method="POST">
                 <label htmlFor="title">Title: </label>
