@@ -5,8 +5,6 @@ const express = require('express');
 const methodOverride = require('method-override');
 
 // require body parser
-// const bodyParser = require('body-parser');
-// 
 const Log = require('./models/logs');
 
 // set express()to a variable
@@ -15,14 +13,14 @@ const app = express();
 //set a variable of port to 3000
 const port = 3000;
 
-// require mongoose
-const mongoose = require('mongoose');
-// mongoose.set("strictQuery", false);
-
 // Add dotenv
 require('dotenv').config();
 
 const logsControllers = require('./controllers/logs');
+
+// require mongoose
+const mongoose = require('mongoose');
+mongoose.set("strictQuery", false);
 
 // upgrade your code to create your log in MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser:
@@ -32,13 +30,16 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser:
     });
 
 //MIDDLEWARE here. ALWAYS PLACE MIDDLEWARE BEFORE ROUTES
+
+//use methodOverride. We'll be adding a query parameter to our delete form named _method
+
+app.use(methodOverride('_method'));
 app.use((req, res, next) => {
     console.log('I run for all routes');
     next();
 });
+
 app.use(express.urlencoded({extended:false}));
-//use methodOverride. We'll be adding a query parameter to our delete form named _method
-app.use(methodOverride('_method'));
 
 // View engines
 app.set('view engine', 'jsx');

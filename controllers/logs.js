@@ -32,13 +32,13 @@ router.put('/:id', (req, res)=>{
     Log.findByIdAndUpdate(req.params.id, req.body, (err, 
 updatedLog)=>{
        console.log(updatedLog)
-        res.redirect(`/logs/${req.params.id}`);
+        res.redirect(`${req.params.id}`);
     });
 });
 
 
 // Create : Make a new thing with this filled out form
-router.post('/', function (req, res) {
+router.post('/', (req, res) => {
     // res.send('received');
     console.log(req.body);
     if(req.body.shipIsBroken === 'on'){
@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
 });
 
 // Edit : A prefilled form to update a specific thing
-router.get('/:id/edit', (req, res)=>{
+router.get('/:id/edit', (req, res)=> {
     Log.findById(req.params.id, (err, foundLog)=>{ //find the log
       if(!err){
         res.render('Edit',
