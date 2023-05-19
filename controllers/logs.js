@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
         res.render('New');
 });
-// Delete : Get rid of this particular thing! 
 
+// Delete : Get rid of this particular thing! 
 router.delete('/:id', (req, res)=>{
     Log.findByIdAndRemove(req.params.id, (err, data)=>{
         res.redirect('/logs');//redirect back to logs index
@@ -40,15 +40,16 @@ updatedLog)=>{
 // Create : Make a new thing with this filled out form
 router.post('/', (req, res) => {
     // res.send('received');
-    console.log(req.body);
+    // console.log(req.body);
     if(req.body.shipIsBroken === 'on'){
-        req.body.shipIsBroken === true;
+        req.body.shipIsBroken = true;
     } else {
-        req.body.shipIsBroken === false;
+        req.body.shipIsBroken = false;
     }
     // Must be the last line of code to 
     // res.send(req.body);
     Log.create(req.body, (err, createdLog)=>{
+        console.log(createdLog);
         res.redirect('/logs');
     });
 });

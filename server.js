@@ -21,7 +21,6 @@ const logsControllers = require('./controllers/logs');
 // require mongoose
 const mongoose = require('mongoose');
 mongoose.set("strictQuery", false);
-
 // upgrade your code to create your log in MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser:
     true, useUnifiedTopology: true });
