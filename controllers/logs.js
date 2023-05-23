@@ -31,8 +31,9 @@ router.put('/:id', (req, res)=>{
     }
     Log.findByIdAndUpdate(req.params.id, req.body, (err, 
 updatedLog)=>{
-       console.log(updatedLog)
-        res.redirect(`${req.params.id}`);
+       console.log(updatedLog);
+       console.log(err);
+       res.redirect('/logs');
     });
 });
 

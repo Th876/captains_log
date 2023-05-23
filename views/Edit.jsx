@@ -3,6 +3,7 @@ const React = require('react');
 class Edit extends React.Component{
   render() {
     const logs = this.props.logs;
+    console.log(logs.shipIsBroken);
     return (
       <div>      
         <h1>Captain's Log Edit page</h1>
@@ -10,7 +11,7 @@ class Edit extends React.Component{
           <b>Title</b><input type="text" name="title" defaultValue={logs.title}/><br/>
           Entry: <input type="text" name="entry"  defaultValue={logs.entry}/><br/>
           <b>Is the ship broken?</b>
-              <input type="checkbox" defaultValue={logs.shipIsBroken} name="shipIsBroken"/>
+              <input type="checkbox" defaultChecked={logs.shipIsBroken} name="shipIsBroken"/>
           <br/>
           <input type="submit" value="Submit Changes"/>
       </form>
